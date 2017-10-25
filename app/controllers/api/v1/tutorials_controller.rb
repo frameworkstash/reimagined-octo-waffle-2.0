@@ -1,5 +1,6 @@
 class Api::V1::TutorialsController < ApplicationController
   before_action :set_tutorial, only: [:show, :update, :destroy]
+  before_action :set_tutorial_framework, only: [:create, :update]
 
   # GET /tutorials
   # GET /tutorials.json
@@ -15,10 +16,10 @@ class Api::V1::TutorialsController < ApplicationController
   # POST /tutorials
   # POST /tutorials.json
   def create
-    @tutorial = Tutorial.new(tutorial_params)
+    @tutorial = @framework.tutorials.build(tutorial_params)
 
     if @tutorial.save
-      render :show, status: :created, location: @tutorial
+      render :show, status: :created
     else
       render json: @tutorial.errors, status: :unprocessable_entity
     end
@@ -28,7 +29,7 @@ class Api::V1::TutorialsController < ApplicationController
   # PATCH/PUT /tutorials/1.json
   def update
     if @tutorial.update(tutorial_params)
-      render :show, status: :ok, location: @tutorial
+      render :show, status: :ok
     else
       render json: @tutorial.errors, status: :unprocessable_entity
     end
@@ -41,13 +42,15 @@ class Api::V1::TutorialsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_tutorial
       @tutorial = Tutorial.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_tutorial_framework
+      @framework = Framework.find(params[:framework_id])
+    end
+
     def tutorial_params
-      params.fetch(:tutorial, {})
+      params.require(:tutorial).permit(:title, :description, :website, :author, :skill_level, :framework_id)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023044309) do
+ActiveRecord::Schema.define(version: 20171025201117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,14 +66,12 @@ ActiveRecord::Schema.define(version: 20171023044309) do
     t.string "website", null: false
     t.string "author", null: false
     t.bigint "framework_id"
-    t.bigint "level_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "skill_level", null: false
     t.index ["framework_id"], name: "index_tutorials_on_framework_id"
-    t.index ["level_id"], name: "index_tutorials_on_level_id"
   end
 
   add_foreign_key "questions", "help_types"
   add_foreign_key "tutorials", "frameworks"
-  add_foreign_key "tutorials", "levels"
 end
