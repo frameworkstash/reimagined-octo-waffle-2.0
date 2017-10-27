@@ -37,6 +37,6 @@ class Api::V1::FrameworksController < ApplicationController
     end
 
     def framework_params
-      params.require(:framework).permit(:title)
+      params.require(:framework).permit(:title, :description)
     end
 end
