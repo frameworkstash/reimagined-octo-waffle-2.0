@@ -6,9 +6,5 @@ json.set! :attributes do
   json.author tutorial.author
   json.skill_level tutorial.skill_level
 end
-json.set! :relationships do
-  json.framework do
-    json.extract! tutorial.framework, :id
-    json.title tutorial.framework.title
-  end
-end
+json.total_comments tutorial.total_comments
+json.total_likes tutorial.total_likes

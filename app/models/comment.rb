@@ -20,4 +20,8 @@ class Comment < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
 
   validates :content, :commentable_type, :commentable_id, presence: true
+
+  def total_likes
+    self.likes.count
+  end
 end
