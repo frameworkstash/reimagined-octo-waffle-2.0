@@ -33,4 +33,12 @@ class Tutorial < ApplicationRecord
   validates :website, format: { with: URL_REGEXP,
     message: "is not valid" }
   validates_associated :framework
+
+  def total_comments
+    self.comments.count
+  end
+
+  def total_likes
+    self.likes.count
+  end
 end
