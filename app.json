@@ -6,6 +6,12 @@
     "LANG": {
       "required": true
     },
+    "FOREST_ENV_SECRET": {
+      "required": true
+    },
+    "FOREST_AUTH_SECRET": {
+      "required": true
+    },
     "RACK_ENV": {
       "required": true
     },
