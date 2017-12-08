@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ForestLiana::Engine => '/forest'
   scope module: 'api', defaults: { format: 'json' } do
     namespace :v1 do
       resources :frameworks do
