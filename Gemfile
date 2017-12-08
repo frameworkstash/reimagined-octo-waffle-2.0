@@ -6,8 +6,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'annotate', require: false
+gem 'forest_liana'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
