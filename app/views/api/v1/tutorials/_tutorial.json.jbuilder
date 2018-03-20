@@ -8,7 +8,7 @@ end
 json.website tutorial.website
 json.skill_level tutorial.skill_level
 json.total_comments tutorial.total_comments
-json.set! :comments do
-  json.array! tutorial.comments, partial: 'api/v1/comments/comment', as: :comment
-end
+# json.set! :comments do
+#   json.array! tutorial.comments, partial: 'api/v1/comments/comment', as: :comment
+# end
 json.total_likes tutorial.total_likes
