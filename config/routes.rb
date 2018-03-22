@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       end
       resources :tutorials, except: [:create, :update] do
         resources :comments, only: [:create, :update, :destroy]
-        resources :likes, only: [:create, :destroy]
+        # resources :likes, only: [:create, :destroy]
+        member do
+          post 'upvote'
+        end
       end
     end
   end
