@@ -1,5 +1,5 @@
 class Api::V1::TutorialsController < ApplicationController
-  before_action :set_tutorial, only: [:show, :update, :destroy]
+  before_action :set_tutorial, only: [:show, :update, :destroy, :upvote]
   before_action :set_tutorial_framework, only: [:create, :update]
 
   # GET /tutorials
@@ -39,6 +39,17 @@ class Api::V1::TutorialsController < ApplicationController
   # DELETE /tutorials/1.json
   def destroy
     @tutorial.destroy
+  end
+
+  # POST /tutorials/1/upvote
+  def upvote
+    like = @tutorial.likes.build
+
+    if like.save
+      render '/api/v1/likes/tutorial', locals: { tutorial: @tutorial }
+    else
+      render json: like.errors, status: :unprocessable_entity
+    end
   end
 
   private
