@@ -62,6 +62,6 @@ class Api::V1::TutorialsController < ApplicationController
     end
 
     def tutorial_params
-      params.require(:tutorial).permit(:title, :description, :website, :author, :skill_level, :framework_id)
+      params.require(:tutorial).permit(:title, :description, :website, :author, :skill_level, :framework_id, :all_tags)
     end
 end
