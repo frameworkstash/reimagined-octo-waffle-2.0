@@ -28,11 +28,28 @@ class Tutorial < ApplicationRecord
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   validates :title, :description, :website, :author, :framework_id, :skill_level, presence: true
   validates :website, format: { with: URL_REGEXP,
     message: "is not valid" }
   validates_associated :framework
+
+  def all_tags=(names)
+    self.tags = names.split(",").map do |name|
+      Tag.where(name: name.strip).first_or_create!
+    end
+  end
+
+  def all_tags
+    self.tags.map(&:name).join(", ")
+  end
+
+  def related_posts
+    tag_names = self.all_tags.split(",")
+    Tutorial.joins(:tags).where(tags: { name: tag_names }).where.not(id: self.id).limit(8)
+  end
 
   def total_comments
     self.comments.count
