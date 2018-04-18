@@ -48,7 +48,7 @@ class Tutorial < ApplicationRecord
 
   def related_posts
     tag_names = self.all_tags.split(",")
-    Tutorial.joins(:tags).where(tags: { name: tag_names }).where.not(id: self.id).limit(8)
+    Tutorial.joins(:tags).where(tags: { name: tag_names }).where.not(id: self.id).distinct.limit(8)
   end
 
   def total_comments
