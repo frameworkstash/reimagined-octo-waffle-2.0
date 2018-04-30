@@ -6,15 +6,19 @@
 #  title        :string           not null
 #  description  :text             not null
 #  website      :string           not null
-#  author       :string           not null
+#  author_name  :string
 #  framework_id :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  skill_level  :string           not null
+#  hunter_id    :integer
+#  author_id    :integer
 #
 # Indexes
 #
+#  index_tutorials_on_author_id     (author_id)
 #  index_tutorials_on_framework_id  (framework_id)
+#  index_tutorials_on_hunter_id     (hunter_id)
 #
 # Foreign Keys
 #
@@ -25,16 +29,20 @@ class Tutorial < ApplicationRecord
   URL_REGEXP = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~‌​+#-]*[\w@?^=%&amp;\/‌​~+#-])?/
 
   belongs_to :framework
+  belongs_to :hunter, class_name: "User"
+  belongs_to :author, class_name: "User"
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
 
-  validates :title, :description, :website, :author, :framework_id, :skill_level, presence: true
+  validates :title, :description, :website, :hunter_id, :framework_id, :skill_level, presence: true
   validates :website, format: { with: URL_REGEXP,
     message: "is not valid" }
-  validates_associated :framework
+  validates :website, uniqueness: true
+
+  validates_associated :framework, :hunter, :author
 
   def all_tags=(names)
     self.tags = names.split(",").map do |name|

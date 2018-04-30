@@ -3,7 +3,7 @@ json.title tutorial.title
 json.description tutorial.description
 json.set! :author do
   json.id 1
-  json.name tutorial.author
+  json.name tutorial.author.displayName
 end
 json.website tutorial.website
 json.skill_level tutorial.skill_level
