@@ -1,4 +1,7 @@
 class Api::V1::CommentsController < ApplicationController
+  include SessionsHelper
+
+  before_action :authenticate, only: [:create, :update, :destroy]
   before_action :set_comment_tutorial
 
   def create
