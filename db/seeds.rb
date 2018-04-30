@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create!(
+  displayName: 'Edwin Carbajal',
+  email: 'example@email.com',
+  photoURL: Faker::Avatar.image,
+  uid: Faker::Crypto.sha256,
+  providerId: 'github',
+)
+
 5.times do
   Framework.create!(
     title: Faker::Lorem.word,
@@ -18,8 +26,9 @@ end
     title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph,
     website: Faker::Internet.url,
-    author: 'John Doe',
+    skill_level: Faker::Lorem.word,
     framework: Framework.all.sample,
-    skill_level: Faker::Lorem.word
+    hunter: User.first,
+    author: User.first
   )
 end
