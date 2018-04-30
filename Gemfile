@@ -9,6 +9,7 @@ end
 gem 'annotate', require: false
 gem 'forest_liana'
 gem 'jbuilder', '~> 2.5'
+gem 'jwt'  
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
