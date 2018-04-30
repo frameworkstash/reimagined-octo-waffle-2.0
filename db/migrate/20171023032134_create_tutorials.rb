@@ -4,7 +4,7 @@ class CreateTutorials < ActiveRecord::Migration[5.1]
       t.string :title, null: false
       t.text :description, null: false
       t.string :website, null: false
-      t.string :author, null: false
+      t.string :author
       t.references :framework, foreign_key: true
       t.references :level, foreign_key: true
 

@@ -12,6 +12,12 @@
     "FOREST_AUTH_SECRET": {
       "required": true
     },
+    "HMAC_ALGORITHM": {
+      "required": true
+    },
+    "HMAC_SECRET": {
+      "required": true
+    },
     "RACK_ENV": {
       "required": true
     },

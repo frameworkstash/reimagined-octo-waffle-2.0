@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   mount ForestLiana::Engine => '/forest'
   scope module: 'api', defaults: { format: 'json' } do
     namespace :v1 do
+      post '/login', to: 'sessions#create'
+      get '/users/:id', to: 'users#show'
+      resources :users, only: [:update, :destroy]
       resources :frameworks do
         resources :tutorials, only: [:create, :update]
       end

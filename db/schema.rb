@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327011537) do
+ActiveRecord::Schema.define(version: 20180419034602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,12 +80,29 @@ ActiveRecord::Schema.define(version: 20180327011537) do
     t.string "title", null: false
     t.text "description", null: false
     t.string "website", null: false
-    t.string "author", null: false
+    t.string "author_name"
     t.bigint "framework_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "skill_level", null: false
+    t.bigint "hunter_id"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_tutorials_on_author_id"
     t.index ["framework_id"], name: "index_tutorials_on_framework_id"
+    t.index ["hunter_id"], name: "index_tutorials_on_hunter_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "displayName", null: false
+    t.string "email", null: false
+    t.string "photoURL", null: false
+    t.string "uid", null: false
+    t.string "providerId", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["displayName"], name: "index_users_on_displayName"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   add_foreign_key "questions", "help_types"

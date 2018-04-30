@@ -1,4 +1,7 @@
 class Api::V1::TutorialsController < ApplicationController
+  include SessionsHelper
+
+  before_action :authenticate, only: [:create, :update, :destroy, :upvote]
   before_action :set_tutorial, only: [:show, :update, :destroy, :upvote]
   before_action :set_tutorial_framework, only: [:create, :update]
 
@@ -62,6 +65,6 @@ class Api::V1::TutorialsController < ApplicationController
     end
 
     def tutorial_params
-      params.require(:tutorial).permit(:title, :description, :website, :author, :skill_level, :framework_id, :all_tags)
+      params.require(:tutorial).permit(:title, :description, :website, :author_name, :skill_level, :framework_id, :hunter_id, :author_id, :all_tags)
     end
 end
