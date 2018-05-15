@@ -7,11 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(
-  displayName: 'Edwin Carbajal',
-  email: 'example@email.com',
+  firstName: 'Edwin',
+  lastName: 'Carbajal',
+  username: 'edwincarbajal',
+  email: 'exaviercarbajal@gmail.com',
+  password: 'password',
   photoURL: Faker::Avatar.image,
-  uid: Faker::Crypto.sha256,
-  providerId: 'github',
+  headline: 'Founder @Frameworkstash',
+  uid: '',
+  providerId: '',
 )
 
 5.times do
