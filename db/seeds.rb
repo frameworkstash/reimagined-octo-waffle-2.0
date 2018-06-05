@@ -11,7 +11,7 @@ User.create!(
   lastName: 'Carbajal',
   username: 'edwincarbajal',
   email: 'exaviercarbajal@gmail.com',
-  password: 'password',
+  password: 'test',
   photoURL: Faker::Avatar.image,
   headline: 'Founder @Frameworkstash',
   uid: '',
