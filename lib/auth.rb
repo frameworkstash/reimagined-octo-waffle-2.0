@@ -1,11 +1,11 @@
 class Auth
-  def self.encode(payload, exp = 24.hours.from.now)
+  def self.encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
     JWT.encode(payload, secret, algorithm)
   end
 
   def self.decode(token)
-    body = JWT.decode(token, secret, true, { algorithm: algorithm })
+    body = JWT.decode(token, secret, true, { algorithm: algorithm })[0]
     HashWithIndifferentAccess.new body
   rescue
     nil
