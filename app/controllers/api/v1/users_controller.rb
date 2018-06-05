@@ -1,16 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :authenticate_request
 
-  # GET /users/1
+  # GET /users/:username
   # GET /tutorials/1.json
   def show
-    render locals: {
-      user: @user
-    }
+    render '/api/v1/users/show', locals: { user: @current_user }
   end
-
-  private
-    def set_user
-      @user = User.find(params[:id])
-    end
 end
