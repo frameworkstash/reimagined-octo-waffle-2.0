@@ -13,12 +13,14 @@
 #  skill_level  :string           not null
 #  hunter_id    :integer
 #  author_id    :integer
+#  slug         :string
 #
 # Indexes
 #
 #  index_tutorials_on_author_id     (author_id)
 #  index_tutorials_on_framework_id  (framework_id)
 #  index_tutorials_on_hunter_id     (hunter_id)
+#  index_tutorials_on_slug          (slug)
 #
 # Foreign Keys
 #
@@ -41,8 +43,10 @@ class Tutorial < ApplicationRecord
   validates :website, format: { with: URL_REGEXP,
     message: "is not valid" }
   validates :website, uniqueness: true
-
   validates_associated :framework, :hunter, :author
+
+  scope :upvoted_by, -> (username) { joins(:likes).where(likes: { user: User.where(username: username) }) }
+  scope :submitted_by, -> (username) { where(hunter: User.where(username: username)) }
 
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
@@ -65,5 +69,9 @@ class Tutorial < ApplicationRecord
 
   def total_likes
     self.likes.count
+  end
+
+  before_validation do
+    self.slug ||= "#{title.to_s.parameterize}"
   end
 end

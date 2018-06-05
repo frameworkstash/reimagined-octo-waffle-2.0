@@ -1,7 +1,7 @@
 class Api::V1::LikesController < ApplicationController
   include SessionsHelper
 
-  before_action :authenticate, only: [:create, :destroy]
+  # before_action :authenticate_request, only: [:create, :destroy]
   before_action :set_like_tutorial
 
   def create

@@ -1,14 +1,18 @@
 class Api::V1::TutorialsController < ApplicationController
-  include SessionsHelper
-
-  before_action :authenticate, only: [:create, :update, :destroy, :upvote]
+  # before_action :authenticate_request, only: [:index, :create, :update, :destroy, :upvote]
+  skip_before_action :authenticate_request, only: [:show]
   before_action :set_tutorial, only: [:show, :update, :destroy, :upvote]
   before_action :set_tutorial_framework, only: [:create, :update]
 
   # GET /tutorials
   # GET /tutorials.json
   def index
-    @tutorials = Tutorial.all.order('created_at DESC')
+    @tutorials = Tutorial.all
+
+    @tutorials = @tutorials.upvoted_by(params[:upvoted]) if params[:upvoted].present?
+    @tutorials = @tutorials.submitted_by(params[:submitted]) if params[:submitted].present?
+
+    @tutorials = @tutorials.order('created_at DESC')
   end
 
   # GET /tutorials/1
@@ -65,6 +69,6 @@ class Api::V1::TutorialsController < ApplicationController
     end
 
     def tutorial_params
-      params.require(:tutorial).permit(:title, :description, :website, :author_name, :skill_level, :framework_id, :hunter_id, :author_id, :all_tags)
+      params.require(:tutorial).permit(:title, :description, :website, :author_name, :skill_level, :hunter_id, :author_id, :all_tags)
     end
 end
