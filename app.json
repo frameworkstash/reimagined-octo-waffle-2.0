@@ -1,6 +1,7 @@
 {
   "name": "reimagined-octo-waffle-2.0",
   "scripts": {
+    "postdeploy": "bundle exec rake db:schema:load db:seed"
   },
   "env": {
     "LANG": {
