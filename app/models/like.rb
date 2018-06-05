@@ -20,6 +20,7 @@
 #
 
 class Like < ApplicationRecord
+  belongs_to :user
   belongs_to :likeable, polymorphic: true
 
   validates :likeable_type, :likeable_id, :user_id, presence: true
