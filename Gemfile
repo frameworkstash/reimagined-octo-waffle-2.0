@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'annotate', require: false
+gem 'faker'
 gem 'forest_liana'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt'
