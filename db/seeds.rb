@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(
-  firstName: 'Edwin',
-  lastName: 'Carbajal',
-  username: 'edwincarbajal',
-  email: 'exaviercarbajal@gmail.com',
-  password: 'test',
-  photoURL: Faker::Avatar.image,
-  headline: 'Founder @Frameworkstash',
-  uid: '',
-  providerId: '',
-)
+# User.create!(
+#   firstName: 'Edwin',
+#   lastName: 'Carbajal',
+#   username: 'edwincarbajal',
+#   email: 'exaviercarbajal@gmail.com',
+#   password: 'test',
+#   photoURL: Faker::Avatar.image,
+#   headline: 'Founder @Frameworkstash',
+#   uid: '',
+#   providerId: '',
+# )
 
 5.times do
   Framework.create!(
