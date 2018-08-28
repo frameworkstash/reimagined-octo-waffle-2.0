@@ -1,4 +1,4 @@
-json.extract! tutorial, :id, :created_at
+json.extract! tutorial, :id
 json.title tutorial.title
 json.slug tutorial.slug
 json.description tutorial.description

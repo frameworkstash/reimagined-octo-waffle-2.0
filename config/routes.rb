@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       # resources :user, only: [:show, :update, :destroy]
       get '/user', to: 'users#show'
       resources :profiles, param: :username, only: [:show]
+      get '/activity', to: 'profiles#activity'
       resources :frameworks do
         resources :tutorials, only: [:create, :update]
       end

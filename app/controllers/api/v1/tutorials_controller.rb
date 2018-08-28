@@ -7,12 +7,11 @@ class Api::V1::TutorialsController < ApplicationController
   # GET /tutorials
   # GET /tutorials.json
   def index
-    @tutorials = Tutorial.all
-
-    @tutorials = @tutorials.upvoted_by(params[:upvoted]) if params[:upvoted].present?
-    @tutorials = @tutorials.submitted_by(params[:submitted]) if params[:submitted].present?
-
-    @tutorials = @tutorials.order('created_at DESC')
+    # @tutorials = Tutorial.all
+    # @tutorials = @tutorials.upvoted_by(params[:upvoted]) if params[:upvoted].present?
+    # @tutorials = @tutorials.submitted_by(params[:submitted]) if params[:submitted].present?
+    # @tutorials = @tutorials.order('created_at DESC')
+    @tutorials = Tutorial.all.group_by_day(format: "%B %e", reverse: true) { |u| u.created_at }
   end
 
   # GET /tutorials/1
