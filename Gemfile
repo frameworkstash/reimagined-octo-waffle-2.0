@@ -9,6 +9,7 @@ end
 gem 'annotate', require: false
 gem 'faker'
 gem 'forest_liana'
+gem 'groupdate'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt'
 gem 'pg', '~> 0.18'
@@ -24,7 +25,6 @@ gem 'rack-cors'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'faker'
 end
 
 group :development do
